@@ -41,6 +41,16 @@ async function run() {
 run().catch(console.dir);
 
 
+app.get('/toDo', async(req, res) => {
+    const toDo = await toDoCollection.find().toArray();
+    res.send(result);
+})
+
+app.post('/toDo', async(req, res) => {
+    const data = req.body;
+    const result = await toDoCollection.insertOne(data);
+    res.send(result);
+})
 
 app.get('/', (req, res) => {
     res.send('server is running')
